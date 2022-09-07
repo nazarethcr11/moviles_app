@@ -9,6 +9,7 @@ import android.widget.Toast
 class MainActivity : AppCompatActivity() {
     lateinit var questions: ArrayList<Question>
     var pos=0
+    var points=0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         val btNo=findViewById<Button>(R.id.btno)
         val textView=findViewById<TextView>(R.id.tvquestion)
         val btSig=findViewById<Button>(R.id.btSiguiente)
+        val textView2=findViewById<TextView>(R.id.tvPointdNumber)
 
 
         textView.text=questions[0].sentence
@@ -42,13 +44,14 @@ class MainActivity : AppCompatActivity() {
                 pos=0
             }
             textView.text=questions[pos].sentence
-
+            textView2.text=points.toString()
         }
 
 
         btYes.setOnClickListener{
             if (questions[pos].answer==true) {
                 Toast.makeText(this, "correcto", Toast.LENGTH_LONG).show()
+                points++
             }
             else{
                 Toast.makeText(this,"incorrecto", Toast.LENGTH_LONG).show()
@@ -60,6 +63,7 @@ class MainActivity : AppCompatActivity() {
             }
             else{
                 Toast.makeText(this,"correcto", Toast.LENGTH_LONG).show()
+                points++
             }
         }
     }
